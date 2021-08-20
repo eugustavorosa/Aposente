@@ -1,0 +1,22 @@
+export default {
+  primary: "#7b2cbf", // ROXO
+  primaryLightBackground: "rgba(123,43,190, 0.83)",
+  primaryLight: "#c9a5e8",
+  secondary: "#f4f9f9",
+  black: "#000",
+  white: "#fff",
+  medium: "#6e6969",
+  mediumLight: "#c4bbbb",
+  mediumMaisLightAinda: "#e0e0e0",
+  light: "#fdfaff",
+  dark: "#0c0c0c",
+  danger: "#ff5252",
+  receita: "#26ce35",
+  despesa: "#f94144",
+  despesaDark: "#5c1010",
+  roxoteste: "#8155BA",
+  darkPurple: "#5a189a",
+  lightGrey: "#ababab",
+  backgroundCard: "#F8F4F4",
+  facebook: "#3b5998",
+};

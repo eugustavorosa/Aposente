@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Aposente",
+    "slug": "Aposente",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./app/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#7B2BBE"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "assets/**"    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aposente",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+     
+      "package": "com.aposente",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./app/assets/favicon.png"
+    }
+  }
+}
