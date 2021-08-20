@@ -1,7 +1,7 @@
 import { parseISO } from "date-fns";
 import React, { createContext, useState, useContext } from "react";
 
-import sum from "../components/valores/sum";
+import sum from "../valores/sum";
 
 const TransaçãoContext = createContext();
 

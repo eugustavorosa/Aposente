@@ -10,7 +10,7 @@ import * as MailComposer from "expo-mail-composer";
 import * as StoreReview from "expo-store-review";
 
 import * as firebase from "firebase";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 import colors from "../config/colors";
 
 import AppText from "../components/AppText";

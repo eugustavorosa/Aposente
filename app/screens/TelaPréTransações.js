@@ -17,7 +17,7 @@ import {
 import { ptBR } from "date-fns/locale";
 
 import colors from "../config/colors";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 
 import AppText from "../components/AppText";
 import CardBalançoMensal from "../components/transações/CardBalançoMensal";

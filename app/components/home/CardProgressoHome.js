@@ -5,7 +5,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { ProgressChart } from "react-native-chart-kit";
 
 import colors from "../../config/colors";
-import { useTransações } from "../../context/TransaçãoProvider";
+import { useTransações } from "../context/TransaçãoProvider";
 
 import AppText from "../AppText";
 import sum from "../valores/sum";

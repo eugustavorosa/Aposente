@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 import * as firebase from "firebase";
 
 import turnToMensal from "../components/valores/TurnToMensal";

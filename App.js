@@ -10,7 +10,7 @@ import colors from "./app/config/colors";
 
 import navigationTheme from "./app/navigation/navigationTheme";
 
-import TransaçãoProvider from "./app/context/TransaçãoProvider";
+import TransaçãoProvider from "./app/components/context/TransaçãoProvider";
 
 import TabNavigator from "./app/navigation/TabNavigator";
 

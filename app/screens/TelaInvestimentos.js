@@ -16,7 +16,7 @@ import {
 import subMonths from "date-fns/subMonths";
 
 import * as firebase from "firebase";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 import colors from "../config/colors";
 
 import CardPatrimônio from "../components/investimentos/CardPatrimônio";

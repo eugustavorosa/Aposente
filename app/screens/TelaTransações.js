@@ -12,7 +12,7 @@ import { ptBR } from "date-fns/locale";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import * as firebase from "firebase";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 import colors from "../config/colors";
 
 import ListItemSeparator from "../components/ListItemSeparator";

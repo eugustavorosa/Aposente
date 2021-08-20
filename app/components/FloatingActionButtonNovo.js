@@ -6,7 +6,7 @@ import { addMonths } from "date-fns";
 
 import colors from "../config/colors";
 import * as firebase from "firebase";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "./context/TransaçãoProvider";
 
 import Despesa from "../screens/Despesa";
 import Receita from "../screens/Receita";

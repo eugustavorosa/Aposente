@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import CurrencyInput from "react-native-currency-input";
 
 import colors from "../config/colors";
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 
 import Tela from "../components/Tela";
 import AppText from "../components/AppText";

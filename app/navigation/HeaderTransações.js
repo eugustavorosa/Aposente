@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Platform } from "react-native";
 import { Appbar } from "react-native-paper";
 
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../components/context/TransaçãoProvider";
 import colors from "../config/colors";
 
 import AppSearchBar from "../components/transações/AppSearchBar";
