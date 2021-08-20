@@ -5,7 +5,7 @@ import sum from "../valores/sum";
 
 const TransaçãoContext = createContext();
 
-function TransaçãoProvider({ children }) {
+function ContextProvider({ children }) {
   const transaçõesInicio = [];
   const [transações, setTransações] = useState(transaçõesInicio);
   const [searchAtive, setSeatchActive] = useState(false);
@@ -134,4 +134,4 @@ function TransaçãoProvider({ children }) {
 
 export const useTransações = () => useContext(TransaçãoContext);
 
-export default TransaçãoProvider;
+export default ContextProvider;

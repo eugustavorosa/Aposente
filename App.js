@@ -10,8 +10,6 @@ import colors from "./app/config/colors";
 
 import navigationTheme from "./app/navigation/navigationTheme";
 
-import TransaçãoProvider from "./app/components/context/TransaçãoProvider";
-
 import TabNavigator from "./app/navigation/TabNavigator";
 
 import * as firebase from "firebase";
@@ -21,6 +19,7 @@ import StackSetup from "./app/navigation/StackSetup";
 import StackAuth from "./app/navigation/StackAuth";
 import TelaSetupPlano from "./app/screens/TelaSetupPlano";
 import TelaSetupPlanoFinal from "./app/screens/TelaSetupPlanoFinal";
+import ContextProvider from "./app/components/context/contextProvider";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBVLtNYw1RfMF_VN06BYYIGJ6vS7hG229U",
@@ -219,13 +218,13 @@ export default function App() {
   //////////////////////////////////////////////////////////
 
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer theme={navigationTheme}>
-        <TransaçãoProvider>
+    <ContextProvider>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={navigationTheme}>
           <StackInicio />
-        </TransaçãoProvider>
-      </NavigationContainer>
-    </PaperProvider>
+        </NavigationContainer>
+      </PaperProvider>
+    </ContextProvider>
   );
 }
 

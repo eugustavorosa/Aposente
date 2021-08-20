@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Image, ScrollView, Platform } from "react-native";
 
-import { useTransações } from "../components/context/TransaçãoProvider";
+import { useTransações } from "../components/context/contextProvider";
 
 import * as firebase from "firebase";
 

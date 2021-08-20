@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { useTransações } from "../context/TransaçãoProvider";
+import { useTransações } from "../context/contextProvider";
 
 import colors from "../../config/colors";
 

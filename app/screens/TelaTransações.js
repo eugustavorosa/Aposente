@@ -1,22 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  StyleSheet,
-  FlatList,
-  Alert,
-  Modal,
-  View,
-  DatePickerAndroid,
-} from "react-native";
+import { StyleSheet, FlatList, Alert, Modal, View } from "react-native";
 import { addMonths, isSameMonth, parseISO, subMonths } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import * as firebase from "firebase";
-import { useTransações } from "../components/context/TransaçãoProvider";
+import { useTransações } from "../components/context/contextProvider";
 import colors from "../config/colors";
 
 import ListItemSeparator from "../components/ListItemSeparator";
-import Tela from "../components/Tela";
 import MonthPicker from "../components/transações/MonthPicker";
 import Transação from "../components/transações/Transação";
 import Despesa from "./Despesa";

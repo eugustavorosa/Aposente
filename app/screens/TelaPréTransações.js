@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import {
   addMonths,
   format,
@@ -17,7 +11,7 @@ import {
 import { ptBR } from "date-fns/locale";
 
 import colors from "../config/colors";
-import { useTransações } from "../components/context/TransaçãoProvider";
+import { useTransações } from "../components/context/contextProvider";
 
 import AppText from "../components/AppText";
 import CardBalançoMensal from "../components/transações/CardBalançoMensal";
@@ -26,7 +20,6 @@ import sum from "../components/valores/sum";
 import valor from "../components/valores/valor";
 import Transação from "../components/transações/Transação";
 import ListItemSeparator from "../components/ListItemSeparator";
-import Tela from "../components/Tela";
 import applyDinamicWidth from "../components/valores/applyDinamicWidth";
 import applyDinamicHeight from "../components/valores/applyDinamicHeight";
 
