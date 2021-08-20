@@ -9,7 +9,7 @@ import applyDinamicHeight from "../components/valores/applyDinamicHeight";
 
 const Stack = createStackNavigator();
 
-const StackTransações = () => (
+const StackTransaçõesTeste = () => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: { backgroundColor: colors.primary },
@@ -48,4 +48,4 @@ const StackTransações = () => (
   </Stack.Navigator>
 );
 
-export default StackTransações;
+export default StackTransaçõesTeste;

@@ -9,8 +9,8 @@ import {
 import Home from "../screens/Home";
 import StackInvestimentos from "./StackInvestimentos";
 import FloatingActionButtonNovo from "../components/FloatingActionButtonNovo";
-import StackTransações from "./StackTransações";
 import StackConfigurações from "./StackConfigurações";
+import StackTransaçõesTeste from "./StackTransações";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +52,7 @@ const TabNavigator = () => (
     />
     <Tab.Screen
       name="TelaTransações"
-      component={StackTransações}
+      component={StackTransaçõesTeste}
       options={{
         tabBarIcon: ({ color, size }) => (
           <FontAwesome5 name="exchange-alt" size={size} color={color} />
