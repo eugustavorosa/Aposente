@@ -9,7 +9,7 @@ import {
 import Home from "../screens/Home";
 import StackInvestimentos from "./StackInvestimentos";
 import FloatingActionButtonNovo from "../components/FloatingActionButtonNovo";
-import StackConfigurações from "./StackConfigurações";
+import StackConfiguraçõesTeste from "./StackConfigurações";
 import StackTransaçõesTeste from "./StackTransações";
 
 const Tab = createBottomTabNavigator();
@@ -61,7 +61,7 @@ const TabNavigator = () => (
     />
     <Tab.Screen
       name="Configurações"
-      component={StackConfigurações}
+      component={StackConfiguraçõesTeste}
       options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialIcons name="settings" size={size * 1.2} color={color} />
