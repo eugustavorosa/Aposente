@@ -116,7 +116,7 @@ function TelaSetupPlanoFinal({ route }) {
       isMensal: true,
     };
     const aporte = {
-      id: Date.now() - 1,
+      id: Date.now() + 9,
       title: "Aporte",
       valor: route.params.aporteMensal,
       dataTransação: new Date(),
@@ -147,7 +147,7 @@ function TelaSetupPlanoFinal({ route }) {
     };
     const agua = {
       id: Date.now() + 3,
-      title: "Agua",
+      title: "Água",
       valor: aguaValor,
       dataTransação: new Date(),
       nameIcon: "water",

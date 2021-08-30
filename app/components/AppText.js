@@ -2,6 +2,7 @@ import React from "react";
 import { Text, StyleSheet, Platform } from "react-native";
 
 import colors from "../config/colors";
+import applyDinamicWidth from "../components/valores/applyDinamicWidth";
 
 function AppText({ children, style, numberOfLines, ...otherProps }) {
   return (
@@ -19,7 +20,7 @@ function AppText({ children, style, numberOfLines, ...otherProps }) {
 const styles = StyleSheet.create({
   appText: {
     color: colors.dark,
-    fontSize: 15,
+    fontSize: applyDinamicWidth(15),
     fontFamily: Platform.OS === "android" ? "sans-serif" : "Helvetica Neue",
   },
 });
