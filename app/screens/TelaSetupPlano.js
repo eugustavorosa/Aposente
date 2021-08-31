@@ -50,107 +50,115 @@ function TelaSetupPlano({ route }) {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.tela}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-            isEdit ? setShowButton(true) : null;
-          }}
-        >
-          <MaterialCommunityIcons
-            name="arrow-left"
-            size={35}
-            color={colors.medium}
-            style={styles.back}
-          />
-        </TouchableOpacity>
-        <AppText style={styles.titulo}>Monte a seguir o seu </AppText>
-        <AppText style={styles.tituloPrimary}>plano de aposentadoria </AppText>
-        <AppText style={styles.subTitulo}>
-          Projete o quanto você pode poupar mensalmente com objetivo de formar
-          sua aposentadoria, o cálculo feito aqui é de juros compostos.
-        </AppText>
-        <ScrollView>
-          <AppForm
-            innerRef={ref}
-            initialValues={{
-              patrimonioInicial: 0,
-              taxaJurosAnual: 10,
-              anos: 30,
-              aporteMensal: 100,
+      <>
+        <View style={styles.tela}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+              isEdit ? setShowButton(true) : null;
             }}
-            validationSchema={validationSchema}
           >
-            <View
-              style={{
-                marginLeft: applyDinamicWidth(20),
-                marginBottom: applyDinamicHeight(30),
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={35}
+              color={colors.medium}
+              style={styles.back}
+            />
+          </TouchableOpacity>
+          <AppText style={styles.titulo}>Monte a seguir o seu </AppText>
+          <AppText style={styles.tituloPrimary}>
+            plano de aposentadoria{" "}
+          </AppText>
+          <AppText style={styles.subTitulo}>
+            Projete o quanto você pode poupar mensalmente com objetivo de formar
+            sua aposentadoria, o cálculo feito aqui é de juros compostos.
+          </AppText>
+          <ScrollView>
+            <AppForm
+              innerRef={ref}
+              initialValues={{
+                patrimonioInicial: 0,
+                taxaJurosAnual: 10,
+                anos: 30,
+                aporteMensal: 100,
               }}
+              validationSchema={validationSchema}
             >
-              <AppText style={styles.tituloInput}>Patrimônio Atual</AppText>
-              <AppFormField
-                name="patrimonioInicial"
-                placeholder="0"
-                prefixo={"R$ "}
-                width="60%"
-                aspectRatio={10 / 2.15}
-                backgroundColor={colors.backgroundCard}
-                borderWidth={1.5}
-                borderColor={colors.mediumMaisLightAinda}
-                borderRadius={10}
-              />
-            </View>
-            <View
-              style={{ marginLeft: applyDinamicWidth(20), marginBottom: 30 }}
-            >
-              <AppText style={styles.tituloInput}>Aporte mensal</AppText>
-              <AppFormField
-                name="aporteMensal"
-                placeholder="100"
-                prefixo={"R$ "}
-                width="60%"
-                backgroundColor={colors.backgroundCard}
-                borderWidth={1.5}
-                borderColor={colors.mediumMaisLightAinda}
-                borderRadius={10}
-                height={applyDinamicWidth(50)}
-              />
-            </View>
-            <View
-              style={{ marginLeft: applyDinamicWidth(20), marginBottom: 30 }}
-            >
-              <AppText style={styles.tituloInput}>Anos de contribuição</AppText>
-              <AppFormField
-                name="anos"
-                placeholder="30 anos"
-                width="40%"
-                maxLength={2}
-                backgroundColor={colors.backgroundCard}
-                borderWidth={1.5}
-                borderColor={colors.mediumMaisLightAinda}
-                borderRadius={10}
-                height={applyDinamicWidth(50)}
-              />
-            </View>
-            <View
-              style={{ marginLeft: applyDinamicWidth(20), marginBottom: 30 }}
-            >
-              <AppText style={styles.tituloInput}>Taxa de Juros Anual</AppText>
-              <AppFormField
-                name="taxaJurosAnual"
-                placeholder="10"
-                width="25%"
-                sufixo="%"
-                maxLength={2}
-                backgroundColor={colors.backgroundCard}
-                borderWidth={1.5}
-                borderColor={colors.mediumMaisLightAinda}
-                borderRadius={10}
-                height={applyDinamicWidth(50)}
-              />
-            </View>
-          </AppForm>
-        </ScrollView>
+              <View
+                style={{
+                  marginLeft: applyDinamicWidth(20),
+                  marginBottom: applyDinamicHeight(30),
+                }}
+              >
+                <AppText style={styles.tituloInput}>Patrimônio Atual</AppText>
+                <AppFormField
+                  name="patrimonioInicial"
+                  placeholder="0"
+                  prefixo={"R$ "}
+                  width="60%"
+                  aspectRatio={10 / 2.15}
+                  backgroundColor={colors.backgroundCard}
+                  borderWidth={1.5}
+                  borderColor={colors.mediumMaisLightAinda}
+                  borderRadius={10}
+                />
+              </View>
+              <View
+                style={{ marginLeft: applyDinamicWidth(20), marginBottom: 30 }}
+              >
+                <AppText style={styles.tituloInput}>Aporte mensal</AppText>
+                <AppFormField
+                  name="aporteMensal"
+                  placeholder="100"
+                  prefixo={"R$ "}
+                  width="60%"
+                  backgroundColor={colors.backgroundCard}
+                  borderWidth={1.5}
+                  borderColor={colors.mediumMaisLightAinda}
+                  borderRadius={10}
+                  height={applyDinamicWidth(50)}
+                />
+              </View>
+              <View
+                style={{ marginLeft: applyDinamicWidth(20), marginBottom: 30 }}
+              >
+                <AppText style={styles.tituloInput}>
+                  Anos de contribuição
+                </AppText>
+                <AppFormField
+                  name="anos"
+                  placeholder="30 anos"
+                  width="40%"
+                  maxLength={2}
+                  backgroundColor={colors.backgroundCard}
+                  borderWidth={1.5}
+                  borderColor={colors.mediumMaisLightAinda}
+                  borderRadius={10}
+                  height={applyDinamicWidth(50)}
+                />
+              </View>
+              <View
+                style={{ marginLeft: applyDinamicWidth(20), marginBottom: 30 }}
+              >
+                <AppText style={styles.tituloInput}>
+                  Taxa de Juros Anual
+                </AppText>
+                <AppFormField
+                  name="taxaJurosAnual"
+                  placeholder="10"
+                  width="25%"
+                  sufixo="%"
+                  maxLength={2}
+                  backgroundColor={colors.backgroundCard}
+                  borderWidth={1.5}
+                  borderColor={colors.mediumMaisLightAinda}
+                  borderRadius={10}
+                  height={applyDinamicWidth(50)}
+                />
+              </View>
+            </AppForm>
+          </ScrollView>
+        </View>
         <DoneButton
           titulo="VER RESULTADOS DESTE PLANO"
           bottom={applyDinamicHeight(30)}
@@ -167,7 +175,7 @@ function TelaSetupPlano({ route }) {
             })
           }
         />
-      </View>
+      </>
     </TouchableWithoutFeedback>
   );
 }
