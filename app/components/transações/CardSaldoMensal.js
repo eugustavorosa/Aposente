@@ -25,7 +25,7 @@ function CardSaldoMensal({
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <View style={styles.patrimonioContainer}>
-          <AppText style={styles.tituloPatrimonio}>
+          <AppText style={styles.tituloPatrimonio} numberOfLines={1}>
             {format(new Date(), "MMMM", { locale: ptBR })} - Saldo Mensal
           </AppText>
           <AppMaskText
