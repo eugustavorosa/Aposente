@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: applyDinamicHeight(5),
   },
   tituloPatrimonio: {
-    paddingHorizontal: applyDinamicWidth(30),
+    paddingLeft: applyDinamicWidth(30),
     paddingVertical: applyDinamicHeight(10),
     marginTop: applyDinamicHeight(2),
     color: colors.white,

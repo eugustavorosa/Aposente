@@ -60,7 +60,7 @@ function TelaConfigurações({ navigation }) {
     try {
       const result = await Share.share({
         message:
-          "Tô controlando meus gastos e projetando meu futuro com o Aposente! Dá uma olhada | https://www.instagram.com/aposenteapp/",
+          "Tô controlando meus gastos e projetando meu futuro com o Aposente! Dá uma olhada | https://apps.apple.com/br/app/aposente/id1581875988",
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
