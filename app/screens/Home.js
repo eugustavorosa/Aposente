@@ -91,6 +91,8 @@ function Home(props) {
 
   const [budgetSelected, setBudgetSelected] = useState(true);
 
+  ////////////////// mensal
+
   const valorReceitaMensal = transações
     .filter((item) => item.tipoTransação.includes("receita"))
     .filter((item) => isSameMonth(parseISO(item.dataTransação), new Date()))
@@ -109,6 +111,26 @@ function Home(props) {
 
   const saldoMensal =
     valorReceitaMensal - (valorDespesaMensal + valorAporteMensal);
+
+  //////////////// total
+
+  const valorReceitaTotal = transações
+    .filter((item) => item.tipoTransação.includes("receita"))
+    .filter((item) => parseISO(item.dataTransação))
+    .map(valor)
+    .reduce(sum, 0);
+  const valorDespesaTotal = transações
+    .filter((item) => item.tipoTransação.includes("despesa"))
+    .filter((item) => parseISO(item.dataTransação))
+    .map(valor)
+    .reduce(sum, 0);
+  const valorAporteTotal = transações
+    .filter((item) => item.tipoTransação.includes("aporte"))
+    .filter((item) => parseISO(item.dataTransação))
+    .map(valor)
+    .reduce(sum, 0);
+
+  const saldoTotal = valorReceitaTotal - (valorDespesaTotal + valorAporteTotal);
 
   let porcentagemAporteAtual =
     valorAporteMensal /
@@ -247,8 +269,11 @@ function Home(props) {
 
         {budgetSelected ? (
           <View>
-            <AppText style={styles.tituloSaldo}>
+            {/* <AppText style={styles.tituloSaldo}>
               {format(new Date(), "MMMM", { locale: ptBR })} - Saldo Mensal
+            </AppText> */}
+            <AppText style={styles.tituloSaldo}>
+              Saldo total da carteira
             </AppText>
             {loading ? (
               <Loading
@@ -269,7 +294,7 @@ function Home(props) {
                 <AppText style={styles.unitSaldo}>{unidade}</AppText>
                 <AppMaskText
                   style={styles.valorSaldo}
-                  value={saldoMensal}
+                  value={saldoTotal}
                   precision={2}
                   unit=""
                 />
@@ -346,7 +371,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   tituloSaldo: {
-    textTransform: "capitalize",
+    // textTransform: "capitalize",
     color: colors.white,
     marginHorizontal: applyDinamicHeight(30),
     marginTop: applyDinamicSize(25),
