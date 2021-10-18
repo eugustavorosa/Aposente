@@ -21,6 +21,11 @@ import TelaSetupPlano from "./app/screens/TelaSetupPlano";
 import TelaSetupPlanoFinal from "./app/screens/TelaSetupPlanoFinal";
 import ContextProvider from "./app/components/context/contextProvider";
 
+import { LogBox } from "react-native";
+import _ from "lodash";
+
+import FiltroModal from "./app/components/transações/FiltroModal";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBVLtNYw1RfMF_VN06BYYIGJ6vS7hG229U",
   authDomain: "aposente-69685.firebaseapp.com",
@@ -91,6 +96,17 @@ export default function App() {
   }, []);
 
   const [loggedIn, setLoggedIn] = useState(null);
+
+  ///////////////////////////////////// TESTE PRA PARAR BUG DO TIMER
+
+  LogBox.ignoreLogs(["Warning:..."]); // ignore specific logs
+  LogBox.ignoreAllLogs(); // ignore all logs
+  const _console = _.clone(console);
+  console.warn = (message) => {
+    if (message.indexOf("Setting a timer") <= -1) {
+      _console.warn(message);
+    }
+  };
 
   ///////////////////////////////////// STACKS
 
@@ -218,13 +234,14 @@ export default function App() {
   //////////////////////////////////////////////////////////
 
   return (
-    <ContextProvider>
-      <PaperProvider theme={theme}>
-        <NavigationContainer theme={navigationTheme}>
-          <StackInicio />
-        </NavigationContainer>
-      </PaperProvider>
-    </ContextProvider>
+    // <ContextProvider>
+    //   <PaperProvider theme={theme}>
+    //     <NavigationContainer theme={navigationTheme}>
+    //       <StackInicio />
+    //     </NavigationContainer>
+    //   </PaperProvider>
+    // </ContextProvider>
+    <FiltroModal />
   );
 }
 

@@ -272,9 +272,7 @@ function Home(props) {
             {/* <AppText style={styles.tituloSaldo}>
               {format(new Date(), "MMMM", { locale: ptBR })} - Saldo Mensal
             </AppText> */}
-            <AppText style={styles.tituloSaldo}>
-              Saldo total da carteira
-            </AppText>
+            <AppText style={styles.tituloSaldo}>Saldo total</AppText>
             {loading ? (
               <Loading
                 style={{
@@ -371,7 +369,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   tituloSaldo: {
-    // textTransform: "capitalize",
+    textTransform: "capitalize",
     color: colors.white,
     marginHorizontal: applyDinamicHeight(30),
     marginTop: applyDinamicSize(25),
