@@ -21,10 +21,9 @@ import TelaSetupPlano from "./app/screens/TelaSetupPlano";
 import TelaSetupPlanoFinal from "./app/screens/TelaSetupPlanoFinal";
 import ContextProvider from "./app/components/context/contextProvider";
 
+//////////////////////////// pra parar de dar aquela mensagem de TIMER no android
 import { LogBox } from "react-native";
 import _ from "lodash";
-
-import FiltroModal from "./app/components/transações/FiltroModal";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBVLtNYw1RfMF_VN06BYYIGJ6vS7hG229U",
@@ -234,14 +233,13 @@ export default function App() {
   //////////////////////////////////////////////////////////
 
   return (
-    // <ContextProvider>
-    //   <PaperProvider theme={theme}>
-    //     <NavigationContainer theme={navigationTheme}>
-    //       <StackInicio />
-    //     </NavigationContainer>
-    //   </PaperProvider>
-    // </ContextProvider>
-    <FiltroModal />
+    <ContextProvider>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={navigationTheme}>
+          <StackInicio />
+        </NavigationContainer>
+      </PaperProvider>
+    </ContextProvider>
   );
 }
 

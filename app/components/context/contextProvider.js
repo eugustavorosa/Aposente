@@ -9,9 +9,13 @@ function ContextProvider({ children }) {
   const transaçõesInicio = [];
   const [transações, setTransações] = useState(transaçõesInicio);
   const [searchAtive, setSeatchActive] = useState(false);
+
+  ///////////////////////////////////////////////////////////////////////////// Filtro
   const [receitaSelected, setReceitaSelected] = useState(false);
   const [despesaSelected, setDespesaSelected] = useState(false);
   const [aporteSelected, setAporteSelected] = useState(false);
+  const [mensalSelected, setMensalSelected] = useState(false);
+  const [unicoSelected, setUnicoSelected] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState({
     label: "Todas as categorias",
     value: 1,
@@ -67,17 +71,22 @@ function ContextProvider({ children }) {
   return (
     <TransaçãoContext.Provider
       value={{
-        //////////////////////////////////////////////////////////// TRANSAÇÕES
+        ///////////////////////////////////////////////////////////// TRANSAÇÕES
         transações,
         setTransações,
         searchAtive,
         setSeatchActive,
+        ///////////////////////////////////////////////////////////// FILTRO
         receitaSelected,
         setReceitaSelected,
         despesaSelected,
         setDespesaSelected,
         aporteSelected,
         setAporteSelected,
+        mensalSelected,
+        setMensalSelected,
+        unicoSelected,
+        setUnicoSelected,
         categoryFilter,
         setCategoryFilter,
         ///////////////////////////////////////////////////////////// PLANO DE APOSENTADORIA

@@ -17,18 +17,49 @@ import CardFiltro from "./CardFiltro";
 import applyDinamicHeight from "../valores/applyDinamicHeight";
 import ListItemSeparator from "../ListItemSeparator";
 import PickerCategoria from "./PickerCategoria";
+import { useTransações } from "../context/contextProvider";
 
-const FiltroModal = () => {
-  const onPressCancel = () => {};
-  const onPressFiltrar = () => {};
-
+const FiltroModal = ({ onPressCancel, onPressFiltrar }) => {
   //////// teste só pra funfar o front end
 
-  const [receitaSelected, setReceitaSelected] = useState(false);
-  const [despesaSelected, setDespesaSelected] = useState(false);
-  const [aporteSelected, setAporteSelected] = useState(false);
-  const [mensalSelected, setMensalSelected] = useState(false);
-  const [unicoSelected, setUnicoSelected] = useState(false);
+  const {
+    receitaSelected,
+    setReceitaSelected,
+    despesaSelected,
+    setDespesaSelected,
+    aporteSelected,
+    setAporteSelected,
+    categoryFilter,
+    setCategoryFilter,
+    mensalSelected,
+    setMensalSelected,
+    unicoSelected,
+    setUnicoSelected,
+  } = useTransações();
+
+  const categories = [
+    { label: "Todas as categorias", value: 1, name: "plus" },
+    { label: "Salário", value: 2, name: "briefcase" },
+    { label: "Presente", value: 3, name: "gift" },
+    { label: "Investimentos", value: 4, name: "chart-line" },
+    { label: "Alimentação", value: 5, name: "silverware-fork-knife" },
+    { label: "Animais", value: 6, name: "dog-side" },
+    { label: "Compras", value: 7, name: "shopping" },
+    { label: "Dívidas", value: 8, name: "cash-remove" },
+    { label: "Educação", value: 9, name: "school" },
+    { label: "Entretenimento", value: 10, name: "youtube-tv" },
+    { label: "Impostos", value: 11, name: "clipboard-text" },
+    { label: "Lazer", value: 12, name: "baseball" },
+    { label: "Moradia", value: 13, name: "home" },
+    { label: "Pessoal", value: 14, name: "account" },
+    { label: "Presentes", value: 15, name: "gift" },
+    { label: "Restaurantes", value: 16, name: "food-variant" },
+    { label: "Roupas", value: 17, name: "tshirt-crew" },
+    { label: "Saúde", value: 18, name: "hospital" },
+    { label: "Transporte", value: 19, name: "car" },
+    { label: "Viagem", value: 20, name: "airplane-takeoff" },
+    { label: "Outros", value: 21, name: "dots-horizontal" },
+  ];
 
   return (
     <ScrollView style={styles.tela}>
@@ -51,7 +82,11 @@ const FiltroModal = () => {
               : styles.containerCardFiltro,
           ]}
           styleTipo={[receitaSelected ? styles.tipoSelected : styles.tipo]}
-          onPress={() => setReceitaSelected((previousState) => !previousState)}
+          onPress={() => {
+            setDespesaSelected(false);
+            setAporteSelected(false);
+            setReceitaSelected((previousState) => !previousState);
+          }}
           styleTipo={[receitaSelected ? styles.tipoSelected : styles.tipo]}
         />
         <CardFiltro
@@ -62,7 +97,11 @@ const FiltroModal = () => {
               : styles.containerCardFiltro,
           ]}
           styleTipo={[despesaSelected ? styles.tipoSelected : styles.tipo]}
-          onPress={() => setDespesaSelected((previousState) => !previousState)}
+          onPress={() => {
+            setReceitaSelected(false);
+            setAporteSelected(false);
+            setDespesaSelected((previousState) => !previousState);
+          }}
           styleTipo={[despesaSelected ? styles.tipoSelected : styles.tipo]}
         />
         <CardFiltro
@@ -73,7 +112,11 @@ const FiltroModal = () => {
               : styles.containerCardFiltro,
           ]}
           styleTipo={[aporteSelected ? styles.tipoSelected : styles.tipo]}
-          onPress={() => setAporteSelected((previousState) => !previousState)}
+          onPress={() => {
+            setReceitaSelected(false);
+            setDespesaSelected(false);
+            setAporteSelected((previousState) => !previousState);
+          }}
           styleTipo={[aporteSelected ? styles.tipoSelected : styles.tipo]}
         />
       </View>
@@ -94,7 +137,10 @@ const FiltroModal = () => {
               : styles.containerCardFiltro,
           ]}
           styleTipo={[mensalSelected ? styles.tipoSelected : styles.tipo]}
-          onPress={() => setMensalSelected((previousState) => !previousState)}
+          onPress={() => {
+            setUnicoSelected(false);
+            setMensalSelected((previousState) => !previousState);
+          }}
           styleTipo={[mensalSelected ? styles.tipoSelected : styles.tipo]}
         />
         <CardFiltro
@@ -105,7 +151,10 @@ const FiltroModal = () => {
               : styles.containerCardFiltro,
           ]}
           styleTipo={[unicoSelected ? styles.tipoSelected : styles.tipo]}
-          onPress={() => setUnicoSelected((previousState) => !previousState)}
+          onPress={() => {
+            setMensalSelected(false);
+            setUnicoSelected((previousState) => !previousState);
+          }}
           styleTipo={[unicoSelected ? styles.tipoSelected : styles.tipo]}
         />
       </View>
@@ -117,7 +166,7 @@ const FiltroModal = () => {
       <AppText style={styles.titulo}>Categoria</AppText>
       <View style={{ marginBottom: "10%" }}>
         <PickerCategoria
-          iconName={"plus"}
+          iconName={categoryFilter ? categoryFilter.name : "plus"}
           placeholder="Todas as categorias"
           stylePlaceholder={{
             color: colors.white,
@@ -127,6 +176,9 @@ const FiltroModal = () => {
                 ? "sans-serif-medium"
                 : "Helvetica Neue",
           }}
+          selectedItem={categoryFilter}
+          onSelectItem={(item) => setCategoryFilter(item)}
+          items={categories}
         />
       </View>
       <ListItemSeparator
@@ -173,7 +225,6 @@ const styles = StyleSheet.create({
     fontSize: applyDinamicWidth(15),
   },
   tela: {
-    paddingTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: colors.primary,
   },
@@ -191,6 +242,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     padding: "1.5%",
     marginLeft: "1.5%",
+    marginTop: "3%",
   },
   done: {
     alignSelf: "center",

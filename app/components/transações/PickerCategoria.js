@@ -44,7 +44,7 @@ function PickerCategoria({
         animationType="slide"
         presentationStyle="pageSheet"
       >
-        <Tela>
+        <View style={{ marginTop: "3%" }}>
           <View style={{ flexDirection: "row" }}>
             <AppText style={styles.titulo}>Categorias:</AppText>
             <MaterialCommunityIcons
@@ -73,7 +73,7 @@ function PickerCategoria({
             )}
             ItemSeparatorComponent={() => <ListItemSeparator height={1.3} />}
           />
-        </Tela>
+        </View>
       </Modal>
     </>
   );

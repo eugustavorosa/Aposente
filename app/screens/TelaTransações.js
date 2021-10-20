@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, FlatList, Alert, Modal, View } from "react-native";
 import { addMonths, isSameMonth, parseISO, subMonths } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -15,12 +15,12 @@ import Despesa from "./Despesa";
 import Receita from "./Receita";
 import Aporte from "./Aporte";
 import HeaderTransações from "../navigation/HeaderTransações";
-import FiltroBottom from "../components/transações/FiltroBottom";
 import AppText from "../components/AppText";
 import ListItemDeleteAction from "../components/transações/ListItemDeleteAction";
 import TransaçõesVazias from "../components/transações/TransaçõesVazias";
 import applyDinamicWidth from "../components/valores/applyDinamicWidth";
 import applyDinamicHeight from "../components/valores/applyDinamicHeight";
+import FiltroModal from "../components/transações/FiltroModal";
 
 function TelaTransações({ route, navigation }) {
   ////////////////////////// user info
@@ -48,6 +48,10 @@ function TelaTransações({ route, navigation }) {
     setDespesaSelected,
     aporteSelected,
     setAporteSelected,
+    mensalSelected,
+    setMensalSelected,
+    unicoSelected,
+    setUnicoSelected,
     categoryFilter,
     setCategoryFilter,
   } = useTransações();
@@ -60,7 +64,7 @@ function TelaTransações({ route, navigation }) {
   const [modalVisibleAporte, setModalVisibleAporte] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const bottomSheetRef = useRef(null);
+  const [modalVisibleFiltro, setModalVisibleFiltro] = useState(false);
 
   const [isEdit, setIsEdit] = useState(false);
 
@@ -249,7 +253,7 @@ function TelaTransações({ route, navigation }) {
           value={searchQuery}
           onChange={(text) => setSearchQuery(text)}
           onPressFilter={() => {
-            bottomSheetRef.current.expand();
+            setModalVisibleFiltro(true);
           }}
           onPressCancelar={() => {
             setSeatchActive(false);
@@ -302,6 +306,28 @@ function TelaTransações({ route, navigation }) {
       )
       .filter((item) => item.tipoTransação.includes("aporte"));
   }
+  if (mensalSelected) {
+    filteredData = transações
+      .sort(function (a, b) {
+        return new Date(a.dataTransação) - new Date(b.dataTransação);
+      })
+      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+      .filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      .filter((item) => item.isMensal === true);
+  }
+  if (unicoSelected) {
+    filteredData = transações
+      .sort(function (a, b) {
+        return new Date(a.dataTransação) - new Date(b.dataTransação);
+      })
+      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+      .filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      .filter((item) => item.isMensal != true);
+  }
   if (categoryFilter.label != "Todas as categorias") {
     filteredData = transações
       .sort(function (a, b) {
@@ -320,7 +346,6 @@ function TelaTransações({ route, navigation }) {
 
   return (
     <>
-      {/* <Tela backgroundColor={colors.light}> */}
       <View style={styles.tela}>
         <MonthPicker
           date={date}
@@ -337,6 +362,8 @@ function TelaTransações({ route, navigation }) {
         {(receitaSelected === true ||
           despesaSelected === true ||
           aporteSelected === true ||
+          mensalSelected === true ||
+          unicoSelected === true ||
           categoryFilter.label != "Todas as categorias") && (
           <View style={styles.avisoFiltro}>
             <AppText style={styles.avisoFiltroTexto}>
@@ -356,6 +383,8 @@ function TelaTransações({ route, navigation }) {
                 setReceitaSelected(false);
                 setDespesaSelected(false);
                 setAporteSelected(false);
+                setMensalSelected(false);
+                setUnicoSelected(false);
               }}
             />
           </View>
@@ -412,21 +441,28 @@ function TelaTransações({ route, navigation }) {
         />
         <ListItemSeparator height={2} width="90%" />
       </View>
-      {/* </Tela> */}
-      <FiltroBottom
-        bottomSheetRef={bottomSheetRef}
-        onPressCancel={() => {
-          bottomSheetRef.current.close();
-          setCategoryFilter({
-            label: "Todas as categorias",
-            value: 1,
-            name: "plus",
-          });
-        }}
-        onPressDone={() => {
-          bottomSheetRef.current.close();
-        }}
-      />
+      <Modal
+        visible={modalVisibleFiltro}
+        animationType="slide"
+        presentationStyle="pageSheet"
+      >
+        <FiltroModal
+          onPressCancel={() => {
+            setModalVisibleFiltro(false);
+            setCategoryFilter({
+              label: "Todas as categorias",
+              value: 1,
+              name: "plus",
+            });
+            setReceitaSelected(false);
+            setDespesaSelected(false);
+            setAporteSelected(false);
+          }}
+          onPressFiltrar={() => {
+            setModalVisibleFiltro(false);
+          }}
+        />
+      </Modal>
       <Modal visible={modalVisibleDespesa} animationType="slide">
         <Despesa
           onPressCancelar={() => setModalVisibleDespesa(false)}

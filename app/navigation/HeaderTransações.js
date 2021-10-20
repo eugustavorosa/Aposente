@@ -32,17 +32,7 @@ function HeaderTransações({
       </Appbar.Header>
     );
   } else {
-    return Platform.OS === "android" ? (
-      <Appbar.Header>
-        <Appbar.BackAction onPress={onPressBack} color={colors.white} />
-        <Appbar.Content
-          title="Todas transações"
-          titleStyle={styles.title}
-          allowFontScaling={false}
-        />
-        <Appbar.Action icon="magnify" onPress={() => setSeatchActive(true)} />
-      </Appbar.Header>
-    ) : (
+    return (
       <Appbar.Header>
         <Appbar.BackAction onPress={onPressBack} color={colors.white} />
         <Appbar.Content
