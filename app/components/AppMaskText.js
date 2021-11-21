@@ -5,7 +5,6 @@ import { TextMask } from "react-native-masked-text";
 import colors from "../config/colors";
 
 function AppMaskText({
-  children,
   style,
   precision = 0,
   unit = "R$ ",

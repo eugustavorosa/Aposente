@@ -8,6 +8,9 @@ import * as firebase from "firebase";
 import { useTransações } from "../components/context/contextProvider";
 import colors from "../config/colors";
 
+import sum from "../components/valores/sum";
+import valor from "../components/valores/valor";
+
 import ListItemSeparator from "../components/ListItemSeparator";
 import MonthPicker from "../components/transações/MonthPicker";
 import Transação from "../components/transações/Transação";
@@ -21,6 +24,7 @@ import TransaçõesVazias from "../components/transações/TransaçõesVazias";
 import applyDinamicWidth from "../components/valores/applyDinamicWidth";
 import applyDinamicHeight from "../components/valores/applyDinamicHeight";
 import FiltroModal from "../components/transações/FiltroModal";
+import TotalFiltro from "../components/transações/TotalFiltro";
 
 function TelaTransações({ route, navigation }) {
   ////////////////////////// user info
@@ -265,6 +269,11 @@ function TelaTransações({ route, navigation }) {
     });
   }, [navigation]);
 
+  function valor(item) {
+    return item.valor;
+  }
+
+  ////////////////////////// teste CONST fora e IF dentro
   let filteredData = transações
     .sort(function (a, b) {
       return new Date(a.dataTransação) - new Date(b.dataTransação);
@@ -273,76 +282,166 @@ function TelaTransações({ route, navigation }) {
     .filter((item) =>
       item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  if (receitaSelected) {
-    filteredData = transações
-      .sort(function (a, b) {
-        return new Date(a.dataTransação) - new Date(b.dataTransação);
-      })
-      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .filter((item) => item.tipoTransação.includes("receita"));
-  }
-  if (despesaSelected) {
-    filteredData = transações
-      .sort(function (a, b) {
-        return new Date(a.dataTransação) - new Date(b.dataTransação);
-      })
-      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .filter((item) => item.tipoTransação.includes("despesa"));
-  }
-  if (aporteSelected) {
-    filteredData = transações
-      .sort(function (a, b) {
-        return new Date(a.dataTransação) - new Date(b.dataTransação);
-      })
-      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .filter((item) => item.tipoTransação.includes("aporte"));
-  }
-  if (mensalSelected) {
-    filteredData = transações
-      .sort(function (a, b) {
-        return new Date(a.dataTransação) - new Date(b.dataTransação);
-      })
-      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .filter((item) => item.isMensal === true);
-  }
-  if (unicoSelected) {
-    filteredData = transações
-      .sort(function (a, b) {
-        return new Date(a.dataTransação) - new Date(b.dataTransação);
-      })
-      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .filter((item) => item.isMensal != true);
-  }
-  if (categoryFilter.label != "Todas as categorias") {
-    filteredData = transações
-      .sort(function (a, b) {
-        return new Date(a.dataTransação) - new Date(b.dataTransação);
-      })
-      .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      .filter((item) => item.category.label.includes(categoryFilter.label));
-  }
 
-  function valor(item) {
-    return item.valor;
-  }
+  const filteredData1 = filteredData.filter((item) => {
+    if (receitaSelected) {
+      return item.tipoTransação.includes("receita");
+    } else {
+      return filteredData;
+    }
+  });
+
+  const filteredData2 = filteredData1.filter((item) => {
+    if (despesaSelected) {
+      return item.tipoTransação.includes("despesa");
+    } else {
+      return filteredData1;
+    }
+  });
+  const filteredData3 = filteredData2.filter((item) => {
+    if (aporteSelected) {
+      return item.tipoTransação.includes("aporte");
+    } else {
+      return filteredData2;
+    }
+  });
+  const filteredData4 = filteredData3.filter((item) => {
+    if (mensalSelected) {
+      return item.isMensal === true;
+    } else {
+      return filteredData3;
+    }
+  });
+  const filteredData5 = filteredData4.filter((item) => {
+    if (unicoSelected) {
+      return item.isMensal != true;
+    } else {
+      return filteredData4;
+    }
+  });
+  const filteredData6 = filteredData5.filter((item) => {
+    if (categoryFilter.label != "Todas as categorias") {
+      return item.category.label.includes(categoryFilter.label);
+    } else {
+      return filteredData5;
+    }
+  });
+
+  // if (receitaSelected) {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.tipoTransação.includes("receita"));
+  // }
+
+  //////////////////////// filtro transações
+  // let filteredData = transações
+  //   .sort(function (a, b) {
+  //     return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //   })
+  //   .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //   .filter((item) =>
+  //     item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  // if (receitaSelected) {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.tipoTransação.includes("receita"));
+  // }
+
+  // if (despesaSelected) {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.tipoTransação.includes("despesa"));
+  // }
+  // if (aporteSelected) {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.tipoTransação.includes("aporte"));
+  // }
+  // if (mensalSelected) {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.isMensal === true);
+  // }
+  // if (unicoSelected) {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.isMensal != true);
+  // }
+  // if (categoryFilter.label != "Todas as categorias") {
+  //   filteredData = transações
+  //     .sort(function (a, b) {
+  //       return new Date(a.dataTransação) - new Date(b.dataTransação);
+  //     })
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), date))
+  //     .filter((item) =>
+  //       item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  //     .filter((item) => item.category.label.includes(categoryFilter.label));
+  // }
+
+  /// filtro valores
+  // let valorFiltrado = transações
+  //   .filter((item) => isSameMonth(parseISO(item.dataTransação), new Date()))
+  //   .map(valor)
+  //   .reduce(sum, 0);
+  // if (receitaSelected) {
+  //   valorFiltrado = transações
+  //     .filter((item) => item.tipoTransação.includes("receita"))
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), new Date()))
+  //     .map(valor)
+  //     .reduce(sum, 0);
+  // }
+  // if (despesaSelected) {
+  //   valorFiltrado = transações
+  //     .filter((item) => item.tipoTransação.includes("despesa"))
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), new Date()))
+  //     .map(valor)
+  //     .reduce(sum, 0);
+  // }
+  // if (aporteSelected) {
+  //   valorFiltrado = transações
+  //     .filter((item) => item.tipoTransação.includes("aporte"))
+  //     .filter((item) => isSameMonth(parseISO(item.dataTransação), new Date()))
+  //     .map(valor)
+  //     .reduce(sum, 0);
+  // }
 
   return (
     <>
@@ -395,7 +494,7 @@ function TelaTransações({ route, navigation }) {
           )
         ) === JSON.stringify([]) && <TransaçõesVazias />}
         <FlatList
-          data={filteredData}
+          data={filteredData6}
           keyExtractor={(transações) => transações.id.toString()}
           renderItem={({ item }) => (
             <Transação
@@ -440,11 +539,21 @@ function TelaTransações({ route, navigation }) {
           onRefresh={cadeTransa}
         />
         <ListItemSeparator height={2} width="90%" />
+        {(receitaSelected === true ||
+          despesaSelected === true ||
+          aporteSelected === true ||
+          mensalSelected === true ||
+          unicoSelected === true ||
+          categoryFilter.label != "Todas as categorias") && (
+          <TotalFiltro
+            valorFiltrado={filteredData6.map(valor).reduce(sum, 0)}
+          />
+        )}
       </View>
       <Modal
         visible={modalVisibleFiltro}
         animationType="slide"
-        presentationStyle="pageSheet"
+        presentationStyle="formSheet"
       >
         <FiltroModal
           onPressCancel={() => {
@@ -499,7 +608,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   avisoFiltroTexto: {
-    padding: 10,
+    padding: 8,
     color: colors.darkPurple,
     marginLeft: applyDinamicWidth(8),
     fontWeight: "500",

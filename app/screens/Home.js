@@ -20,7 +20,6 @@ import CardProgressoHome from "../components/home/CardProgressoHome";
 import applyDinamicHeight from "../components/valores/applyDinamicHeight";
 import applyDinamicWidth from "../components/valores/applyDinamicWidth";
 import applyDinamicSize from "../components/valores/applyDinamicSize";
-import applyInverseWidth from "../components/valores/applyInverseWidth";
 
 function Home(props) {
   //////////////////////////////////////////////////////////////////// getting user name
@@ -152,7 +151,7 @@ function Home(props) {
   }
 
   let unidade = "R$ ";
-  if (saldoMensal < 0) unidade = "-R$ ";
+  if (saldoTotal < 0) unidade = "-R$ ";
 
   return (
     <Tela backgroundColor={colors.primary}>
