@@ -11,3 +11,6 @@ Comece projetando o quanto você consegue poupar mensalmente com objetivo de for
 O propósito do Aposente! é trazer pra você o poder de controlar seu futuro e conquistar a tranquilidade da independência financeira através de ferramentas simples e minimalistas de projeção e controle que te acompanham durante essa jornada.
 
 Fale com a gente em: equipe@aposente.app
+
+
+mini mudança
